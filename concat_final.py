@@ -7,7 +7,5 @@ for path in range(3):
     df = pd.concat([df, df_temp])
 df.dropna(inplace=True)
 df.reset_index(inplace=True, drop=True)
-print(df.head())
-print(df.tail())
 df.info()
 df.to_csv('./crawling_data/crawling_data_concat_final.csv', index=False)
