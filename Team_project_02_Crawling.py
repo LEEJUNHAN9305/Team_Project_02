@@ -25,13 +25,13 @@ driver.get(url)
 time.sleep(10)
 flag2 = True
 cnt = 2
-for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
+for l in [3, 6, 9]:     # 도시 Xpath 순서 번호
     driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
     time.sleep(0.2)
     driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[1]/ul/li[{l}]/a/span').click()
     time.sleep(0.2)
     driver.find_element_by_xpath('//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[2]/a').click()
-    time.sleep((0.2))
+    time.sleep(0.2)
     while flag2:  #   3, 32
         cnt += 1
         flag = True
@@ -41,7 +41,7 @@ for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
 
         while flag:
             xpath_cnt += 1
-            try:                                     # //*[@id="tabMove3"]/div/ul/li[1]/div/div/div[2]/p
+            try:                                     # //*[@id="tabMove3"]/div/ul/li[1]/div/div/div[2]/p //*[@id="tabMove3"]/div/ul/li[1]/div/div/div[2]/p
                 review = driver.find_element_by_xpath(f'//*[@id="tabMove3"]/div/ul/li[{xpath_cnt}]/div/div/div[2]/p').text
                 review = re.compile('[^가-힣 ]').sub('', review)
                 reviews.append(review)            # 리뷰 저장
@@ -51,9 +51,10 @@ for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
                 star_scores.append(star_score[0])    # 별점 저장
                 error_cnt += 1
 
-            except NoSuchElementException as e:
+            except:
                 try:
                     driver.find_element_by_xpath('//*[@id="tabMove3"]/div/a/span').click() # Xpath 가 더 존재하지 않으면 클릭
+                                                # //*[@id="tabMove2"]/div/a/span         //*[@id="tabMove3"]/div/a/span
                     print('error', error_cnt)
                     time.sleep(0.2)
                     error2_cnt += 1
@@ -63,14 +64,27 @@ for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
                         else:
                             pass
                     error_cnt = 0
-                except NoSuchElementException as e:
-                    flag = False                   # 더보기의 Xpath 가 존재하지 않으면 크롤링이 끝난것이니 while 문 탈출 후 다음 지역에서 다시 크롤링
-            except StaleElementReferenceException as e:
-                pass
-        driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
-        time.sleep(0.2)
-        driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[{cnt}]/a').click()
-        time.sleep(0.2)
+                except:
+                    try:
+                        driver.find_element_by_xpath('//*[@id="tabMove2"]/div/a/span').click()
+                    except:
+                        driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
+                        time.sleep(0.2)
+                        driver.find_element_by_xpath(
+                            f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[{cnt}]/a').click()
+                        time.sleep(0.2)
+        try:
+            driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
+            time.sleep(0.2)
+            driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[{cnt}]/a').click()
+            time.sleep(0.2)
+        except:
+            driver.get(url)
+            driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
+            time.sleep(0.2)
+            driver.find_element_by_xpath(
+                f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[{cnt}]/a').click()
+            time.sleep(0.2)
 
 df_section_titles = pd.DataFrame(star_scores, columns=['star_scores'])
 df_section_titles['reviews'] = reviews
