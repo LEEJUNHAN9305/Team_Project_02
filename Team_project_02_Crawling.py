@@ -5,8 +5,7 @@ import re
 import time
 import datetime
 
-category = ['Politics', 'Economic', 'Social', 'Culture', 'World', 'IT']
-pages = [110, 110, 110, 78, 110, 66]
+
 
 url = 'https://www.siksinhot.com/taste?upHpAreaId=9&hpAreaId=398&isBestOrd=N'
 
@@ -19,60 +18,59 @@ options.add_argument('disable-gpu')
 driver = webdriver.Chrome('./chromedriver', options=options)
 df_titles = pd.DataFrame()
 
-
+star_scores = []
+reviews = []
 
 driver.get(url)
 time.sleep(10)
-for i in range(3, 29):
-    driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a"]').click()
-    time.sleep(0.2)
-    driver.find_element_by_xpath('//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[{}]/a').format(i).click()
-    time.sleep(0.2)
-    titles = []
-#     for j in range(1,pages[i]+1):
-#         url = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=10{}#&date=%2000:00:00&page={}'.format(i, j)
-#         driver.get(url)
-#         time.sleep(0.2)
-#
-#         for k in range(1, 5):
-#             for l in range(1, 6):
-#                 x_path = '//*[@id="section_body"]/ul[{}]/li[{}]/dl/dt[2]/a'.format(k, l)
-#                 try:
-#                     title = driver.find_element_by_xpath(x_path).text
-#                     title = re.compile('[^가-힣 ]').sub('', title)
-#                     titles.append(title)
-#                 except NoSuchElementException as e:
-#                     time.sleep(0.5)
-#                     try:
-#                         title = driver.find_element_by_xpath(x_path).text
-#                         title = re.compile('[^가-힣 ]').sub('', title)
-#                         titles.append(title)
-#                     except:
-#                         try:
-#                             x_path = '//*[@id="section_body"]/ul[{}]/li[{}]/dl/dt/a'.format(k, l)
-#                             title = re.compile('[^가-힣 ]').sub('', title)
-#                             titles.append(title)
-#                         except:
-#                             print('no such enlement')
-#                 except StaleElementReferenceException as e:
-#                     print(e)
-#                     print(category[i], j, 'page', k * l)
-#                 except:
-#                     print('error')
-#         if j % 30 == 0:
-#             df_section_titles = pd.DataFrame(titles, columns=['titles'])
-#             df_section_titles['category'] = category[i]
-#             df_titles = pd.concat([df_titles, df_section_titles], ignore_index=True)
-#             df_section_titles.to_csv('./crawling_data/crawling_data_{}_{}_{}.csv'.format(category[i], j-29, j), index=False)
-#             titles = []
-#     df_section_titles = pd.DataFrame(titles, columns=['titles'])
-#     df_section_titles['category'] = category[i]
-#     df_titles = pd.concat([df_titles, df_section_titles], ignore_index=True)
-#     df_section_titles.to_csv('./crawling_data/crawling_data_{}_last.csv'.format(category[i]), index=False)
-#     titles = []
-# df_section_titles = pd.DataFrame(titles, columns=['titles'])
-# df_section_titles['category'] = category[i]
-# df_titles = pd.concat([df_titles, df_section_titles], ignore_index=True)
-# df_titles.to_csv('./crawling_data/naver_news_titles_{}.csv'.format(
-#     datetime.datetime.now().strftime('%Y%m%d')), index=False)
-# driver.close()
+flag2 = True
+cnt = 2
+for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
+    driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[1]/ul/li[{l}]/a/span').clickI()
+    time.sleep()
+    while flag2:  #   3, 32
+        cnt += 1
+        flag = True
+        xpath_cnt = 0
+        error_cnt = 0
+        error2_cnt = 0
+
+        while flag:
+            xpath_cnt += 1
+            try:                                     # //*[@id="tabMove3"]/div/ul/li[1]/div/div/div[2]/p
+                review = driver.find_element_by_xpath(f'//*[@id="tabMove3"]/div/ul/li[{xpath_cnt}]/div/div/div[2]/p').text
+                review = re.compile('[^가-힣 ]').sub('', review)
+                reviews.append(review)            # 리뷰 저장
+
+                star_score = driver.find_element_by_xpath(f'//*[@id="tabMove3"]/div/ul/li[{xpath_cnt}]/div/div/div[2]/div/span/strong').text
+                star_score.split('.')
+                star_scores.append(star_score[0])    # 별점 저장
+                error_cnt += 1
+
+            except NoSuchElementException as e:
+                try:
+                    driver.find_element_by_xpath('//*[@id="tabMove3"]/div/a/span').click() # Xpath 가 더 존재하지 않으면 클릭
+                    print('error', error_cnt)
+                    time.sleep(0.2)
+                    error2_cnt += 1
+                    if error_cnt < 5:
+                        if error2_cnt > 2:
+                            break
+                        else:
+                            pass
+                    error_cnt = 0
+                except NoSuchElementException as e:
+                    flag = False                   # 더보기의 Xpath 가 존재하지 않으면 크롤링이 끝난것이니 while 문 탈출 후 다음 지역에서 다시 크롤링
+            except StaleElementReferenceException as e:
+                pass
+        driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
+        time.sleep(0.2)
+        driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[{cnt}]/a').click()
+        time.sleep(0.2)
+
+df_section_titles = pd.DataFrame(star_scores, columns=['star_scores'])
+df_section_titles['reviews'] = reviews
+df_titles = pd.concat([df_titles, df_section_titles], ignore_index=True)
+df_titles.to_csv('./Crawling_data/siksin_crawling{}.csv'.format(
+    datetime.datetime.now().strftime('%Y%m%d')), index=False)
+driver.close()
