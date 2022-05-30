@@ -25,7 +25,7 @@ driver.get(url)
 time.sleep(10)
 flag2 = True
 cnt = 2
-for l in [1, 4, 7]:
+for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
     driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[1]/ul/li[{l}]/a/span').clickI()
     time.sleep()
     while flag2:  #   3, 32
