@@ -18,6 +18,7 @@ options.add_argument('disable-gpu')
 driver = webdriver.Chrome('./chromedriver', options=options)
 df_titles = pd.DataFrame()
 
+
 star_scores = []
 reviews = []
 
@@ -73,6 +74,12 @@ for l in [3, 6, 9]:     # 도시 Xpath 순서 번호
                         driver.find_element_by_xpath(
                             f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[{cnt}]/a').click()
                         time.sleep(0.2)
+        df_section_titles = pd.DataFrame(star_scores, columns=['star_score'])
+        df_section_titles['reviews'] = reviews
+        df_titles = pd.concat([df_titles, df_section_titles], ignore_index=True)
+        df_section_titles.to_csv(f'./Crawling_data/crawling_data_{l}_{cnt}.csv', index=False)
+        star_scores = []
+        reviews = []
         try:
             driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
             time.sleep(0.2)
@@ -90,5 +97,6 @@ df_section_titles = pd.DataFrame(star_scores, columns=['star_scores'])
 df_section_titles['reviews'] = reviews
 df_titles = pd.concat([df_titles, df_section_titles], ignore_index=True)
 df_titles.to_csv('./Crawling_data/siksin_crawling{}.csv'.format(
-    datetime.datetime.now().strftime('%Y%m%d')), index=False)
+datetime.datetime.now().strftime('%Y%m%d')), index=False)
+
 driver.close()
