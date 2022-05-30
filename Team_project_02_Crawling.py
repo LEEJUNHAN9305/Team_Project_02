@@ -26,8 +26,12 @@ time.sleep(10)
 flag2 = True
 cnt = 2
 for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
-    driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[1]/ul/li[{l}]/a/span').clickI()
-    time.sleep()
+    driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
+    time.sleep(0.2)
+    driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[1]/ul/li[{l}]/a/span').click()
+    time.sleep(0.2)
+    driver.find_element_by_xpath('//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[2]/ul/li[2]/a').click()
+    time.sleep((0.2))
     while flag2:  #   3, 32
         cnt += 1
         flag = True
@@ -43,7 +47,7 @@ for l in [1, 4, 7]:     # 도시 Xpath 순서 번호
                 reviews.append(review)            # 리뷰 저장
 
                 star_score = driver.find_element_by_xpath(f'//*[@id="tabMove3"]/div/ul/li[{xpath_cnt}]/div/div/div[2]/div/span/strong').text
-                star_score.split('.')
+                star_score = star_score.split('.')
                 star_scores.append(star_score[0])    # 별점 저장
                 error_cnt += 1
 
