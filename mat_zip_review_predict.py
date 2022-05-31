@@ -45,7 +45,7 @@ for i in range(len(tokened_X)) :
 X_pad = pad_sequences(tokened_X, 189)
 
 # 모델 예측
-model = load_model('./models/mat_zip_score_predict_model.h5')
+model = load_model('./models/mat_zip_score_predict_model_0.4993394911289215.h5')
 preds = model.predict(X_pad)
 
 # 모델이 최상위로 분류한 카테고리와 차상위로 높게 분류한 카테고리로 다중분류
