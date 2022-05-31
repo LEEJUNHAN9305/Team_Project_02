@@ -5,8 +5,6 @@ import re
 import time
 import datetime
 
-
-
 url = 'https://www.siksinhot.com/taste?upHpAreaId=9&hpAreaId=398&isBestOrd=N'
 
 options = webdriver.ChromeOptions()
@@ -26,7 +24,7 @@ driver.get(url)
 time.sleep(10)
 flag2 = True
 cnt = 2
-for l in [3, 6, 9]:     # 도시 Xpath 순서 번호
+for l in [2, 5, 8]:     # 도시 Xpath 순서 번호
     driver.find_element_by_xpath('//*[@id="contents"]/div/div/div[1]/div[1]/div/div/a').click()
     time.sleep(0.2)
     driver.find_element_by_xpath(f'//*[@id="layer_area_box"]/div[2]/div[2]/div/div/div[1]/ul/li[{l}]/a/span').click()
@@ -55,7 +53,7 @@ for l in [3, 6, 9]:     # 도시 Xpath 순서 번호
             except:
                 try:
                     driver.find_element_by_xpath('//*[@id="tabMove3"]/div/a/span').click() # Xpath 가 더 존재하지 않으면 클릭
-                                                # //*[@id="tabMove2"]/div/a/span         //*[@id="tabMove3"]/div/a/span
+                                                # //*[@id="tabMove2"]/div/a/span
                     print('error', error_cnt)
                     time.sleep(0.2)
                     error2_cnt += 1

@@ -10,7 +10,7 @@ from tensorflow.keras.utils import to_categorical
 import pickle
 
 pd.set_option('display.unicode.east_asian_width', True)
-df = pd.read_csv('./Crawling_data/crawling_data_concat_final.csv')
+df = pd.read_csv('./Crawling_data/mat_zip_preprocessing.csv')
 
 X = df['reviews']
 Y = df['star_score']
@@ -68,5 +68,4 @@ print(X_train.shape, Y_train.shape)
 print(X_test.shape, Y_test.shape)
 
 xy = X_train, X_test, Y_train, Y_test
-np.save('./Crawling_data/mat_zip_data_max{}_wordsize_{}'.format(max, wordsize), xy)
-
+np.save('./Crawling_data/mat_zip_data_max{}_wordsize_{}.npy'.format(max, wordsize), xy)
