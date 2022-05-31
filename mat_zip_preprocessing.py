@@ -10,7 +10,7 @@ from tensorflow.keras.utils import to_categorical
 import pickle
 
 pd.set_option('display.unicode.east_asian_width', True)
-df = pd.read_csv('./Crawling_data/mat_zip_preprocessing.csv')
+df = pd.read_csv('./Crawling_data/mat_zip_preprocessing_05.csv')
 
 X = df['reviews']
 Y = df['star_score']
@@ -38,7 +38,7 @@ for j in range(len(X)):
     words = []
     for i in range(len(X[j])):
         if len(X[j][i]) > 1:
-            if X[j][i]not in list(stopwords['stopword']):
+            if X[j][i] not in list(stopwords['stopword']):
                 words.append(X[j][i])
     X[j] = ' '.join(words)
 
