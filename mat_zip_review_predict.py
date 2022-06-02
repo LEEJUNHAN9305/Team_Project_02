@@ -2,10 +2,11 @@ import pandas as pd
 import numpy as np
 from konlpy.tag import Okt
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.utils import to_categorical
 import pickle
 from tensorflow.keras.models import load_model
 import re
+
+okt = Okt()
 
 reviews = input()
 reviews = re.compile('[^가-힣 ]').sub(' ', reviews)
