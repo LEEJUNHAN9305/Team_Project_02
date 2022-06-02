@@ -16,9 +16,7 @@ for i in range(len(df)):
 
 #리뷰평에서 발견된 광고 NaN화
 for i in range(len(df)):
-    if df.iloc[i, 1] ==
-
-    :
+    if df.iloc[i, 1] == '의정부 배달 불가능한 음식점 배달해드립니다 주문만 해주세요 주문은 카톡 트루미스 친추' :
         df.iloc[i, 1] = np.nan
 
 #NaN값 제거
