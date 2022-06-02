@@ -10,9 +10,9 @@ from tensorflow.keras.models import load_model
 import re
 import time
 
-stopwords = pd.read_csv('./stopwords.csv', index_col=0)
-form_window = uic.loadUiType('./mat_zip_qt.ui')[0]
-okt = Okt()
+stopwords = pd.read_csv('./Crawling_data/stopwords.csv', index_col=0)
+form_window = uic.loadUiType('./mat_zip_review_predict_QT_UI.ui')[0]
+okt = Okt()d
 
 with open('./models/mat_zip.pickle', 'rb') as f:
     token = pickle.load(f)
@@ -59,34 +59,41 @@ class Exam(QWidget, form_window):
         X_pad = pad_sequences(tokened_X, 189)
         preds = model.predict(X_pad)
         print(label[np.argmax(preds)])
+        print(type(label[np.argmax(preds)]))
         self.star2.hide()
         self.star3.hide()
         self.star4.hide()
         self.star5.hide()
+        print('debug1')
         lst = [self.star2, self.star3, self.star4, self.star5]
-        for i in range(20):
-            self.star2.hide()
-            self.star3.hide()
-            self.star4.hide()
-            self.star5.hide()
-            for l in lst:
-                l.show()
-                time.sleep(0.2)
-        if label[np.argmax(preds)] == 2:
+        # for i in range(20):
+        #     self.star2.hide()
+        #     self.star3.hide()
+        #     self.star4.hide()
+        #     self.star5.hide()
+        #     for l in lst:
+        #         l.show()
+        #         time.sleep(0.2)
+        print('debug2')
+
+        evaluation = int(label[np.argmax(preds)])
+        print('debug3')
+        print(evaluation)
+        if evaluation == 2:
             self.star2.show()
-            self.starlayout.hide()
+            print('debug2')
             self.lbl_result.setText('별로에요...')
-        elif label[np.argmax(preds)] == 3:
+            print('debug2')
+        elif evaluation == 3:
             self.star3.show()
-            self.starlayout.hide()
+            print('debug3')
             self.lbl_result.setText('그저 그래요...')
-        elif label[np.argmax(preds)] == 4:
+            print('debug3')
+        elif evaluation == 4:
             self.star4.show()
-            self.starlayout.hide()
             self.lbl_result.setText('좋아요 !')
-        elif label[np.argmax(preds)] == 5:
+        elif evaluation == 5:
             self.star5.show()
-            self.starlayout.hide()
             self.lbl_result.setText('최고에요 !')
 
 

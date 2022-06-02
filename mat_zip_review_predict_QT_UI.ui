@@ -22,6 +22,11 @@
     <height>1000</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>35</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -31,9 +36,9 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>40</x>
      <y>90</y>
-     <width>1031</width>
+     <width>901</width>
      <height>231</height>
     </rect>
    </property>
@@ -51,6 +56,14 @@
         <width>1000</width>
         <height>200</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>40</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </item>
@@ -76,8 +89,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans Adlam</family>
-        <pointsize>50</pointsize>
+        <family>Book Antiqua</family>
+        <pointsize>35</pointsize>
         <weight>75</weight>
         <italic>false</italic>
         <bold>true</bold>
@@ -104,7 +117,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>23</pointsize>
+     <family>Book Antiqua</family>
+     <pointsize>45</pointsize>
     </font>
    </property>
    <property name="text">
@@ -113,113 +127,6 @@
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>340</y>
-     <width>1034</width>
-     <height>514</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_9">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>Image/empty_star.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_8">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>Image/empty_star.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_6">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>Image/empty_star.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_7">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>Image/empty_star.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>Image/empty_star.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-   </layout>
   </widget>
   <widget class="QLabel" name="star3">
    <property name="geometry">
@@ -318,14 +225,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <zorder>horizontalLayoutWidget</zorder>
-  <zorder>horizontalLayoutWidget_2</zorder>
-  <zorder>label</zorder>
-  <zorder>star3</zorder>
-  <zorder>star4</zorder>
-  <zorder>star5</zorder>
-  <zorder>star2</zorder>
-  <zorder>lbl_result</zorder>
  </widget>
  <resources/>
  <connections/>
