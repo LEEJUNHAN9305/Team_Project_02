@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1050</width>
+    <height>1000</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>1000</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>1031</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="9,1">
+    <item>
+     <widget class="QLineEdit" name="review_text">
+      <property name="minimumSize">
+       <size>
+        <width>478</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>1000</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_predict">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Noto Sans Adlam</family>
+        <pointsize>50</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Predict</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>1031</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>23</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Model predict test UI</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>340</y>
+     <width>1034</width>
+     <height>514</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_9">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>Image/empty_star.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_8">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>Image/empty_star.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>Image/empty_star.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_7">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>Image/empty_star.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_5">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>Image/empty_star.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="star3">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>330</y>
+     <width>601</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Image/KakaoTalk_Photo_2022-06-02-11-08-57 002.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="star4">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>330</y>
+     <width>601</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Image/KakaoTalk_Photo_2022-06-02-11-08-57 001.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="star5">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>330</y>
+     <width>601</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Image/KakaoTalk_Photo_2022-06-02-11-08-57 003.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="star2">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>330</y>
+     <width>601</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Image/KakaoTalk_Photo_2022-06-02-11-08-57 005.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_result">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>890</y>
+     <width>491</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>40</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <zorder>horizontalLayoutWidget</zorder>
+  <zorder>horizontalLayoutWidget_2</zorder>
+  <zorder>label</zorder>
+  <zorder>star3</zorder>
+  <zorder>star4</zorder>
+  <zorder>star5</zorder>
+  <zorder>star2</zorder>
+  <zorder>lbl_result</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
