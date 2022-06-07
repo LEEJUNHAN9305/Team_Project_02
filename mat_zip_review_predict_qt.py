@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+from PyQt5.QtGui import *
 import pandas as pd
 import numpy as np
 from konlpy.tag import Okt
@@ -12,7 +13,7 @@ import time
 
 stopwords = pd.read_csv('./Crawling_data/stopwords.csv', index_col=0)
 form_window = uic.loadUiType('./mat_zip_review_predict_QT_UI.ui')[0]
-okt = Okt()d
+okt = Okt()
 
 with open('./models/mat_zip.pickle', 'rb') as f:
     token = pickle.load(f)
@@ -26,14 +27,14 @@ class Exam(QWidget, form_window):
         super().__init__()
         self.setupUi(self)
         self.btn_predict.clicked.connect(self.btn_clicked_slot)
-        self.star2.hide()
-        self.star3.hide()
-        self.star4.hide()
-        self.star5.hide()
-
-
+        self.pixmap = QPixmap()
+        self.pixmap.load('./Image/score.png')
+        self.score.setPixmap(self.pixmap)
     def btn_clicked_slot(self):
-        reviews = self.review_text.text()
+        self.lbl_result.setText('')
+        self.pixmap.load('./Image/score.png')
+        self.score.setPixmap(self.pixmap)
+        reviews = self.review_text.toPlainText()
         print(reviews)
         reviews = re.compile('[^가-힣 ]').sub(' ', reviews)
         reviews = okt.morphs(reviews, stem=True)
@@ -60,12 +61,8 @@ class Exam(QWidget, form_window):
         preds = model.predict(X_pad)
         print(label[np.argmax(preds)])
         print(type(label[np.argmax(preds)]))
-        self.star2.hide()
-        self.star3.hide()
-        self.star4.hide()
-        self.star5.hide()
+
         print('debug1')
-        lst = [self.star2, self.star3, self.star4, self.star5]
         # for i in range(20):
         #     self.star2.hide()
         #     self.star3.hide()
@@ -80,21 +77,25 @@ class Exam(QWidget, form_window):
         print('debug3')
         print(evaluation)
         if evaluation == 2:
-            self.star2.show()
+            self.pixmap.load('./Image/Two_score.png')
+            self.score.setPixmap(self.pixmap)
             print('debug2')
-            self.lbl_result.setText('별로에요...')
+            self.lbl_result.setText('별로예요...')
             print('debug2')
         elif evaluation == 3:
-            self.star3.show()
+            self.pixmap.load('./Image/Three_score.png')
+            self.score.setPixmap(self.pixmap)
             print('debug3')
             self.lbl_result.setText('그저 그래요...')
             print('debug3')
         elif evaluation == 4:
-            self.star4.show()
+            self.pixmap.load('./Image/Four_score.png')
+            self.score.setPixmap(self.pixmap)
             self.lbl_result.setText('좋아요 !')
         elif evaluation == 5:
-            self.star5.show()
-            self.lbl_result.setText('최고에요 !')
+            self.pixmap.load('./Image/Five_score.png')
+            self.score.setPixmap(self.pixmap)
+            self.lbl_result.setText('최고예요 !')
 
 
 
